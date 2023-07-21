@@ -4,20 +4,27 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Order implements Serializable{
+import pt.bitclinic.webservices01.entities.enums.OrderStatus;
+
+public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private LocalDateTime moment;
 	private OrderStatus orderstatus;
-	
-	public Order() {}
+	private Payment payment;
+	private User user;
 
-	public Order(long id, LocalDateTime moment, OrderStatus orderstatus) {
+	public Order() {
+	}
+
+	public Order(long id, LocalDateTime moment, OrderStatus orderstatus, Payment payment, User user) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.orderstatus = orderstatus;
+		this.payment = payment;
+		this.user = user;
 	}
 
 	public long getId() {
@@ -44,6 +51,27 @@ public class Order implements Serializable{
 		this.orderstatus = orderstatus;
 	}
 
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+		
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public double total() {
+		return 0.0;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -63,8 +91,9 @@ public class Order implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", moment=" + moment + ", orderstatus=" + orderstatus + "]";
+		return "Order [id=" + id + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment=" + payment
+				+ ", user=" + user + "]";
 	}
-	
+
 
 }
