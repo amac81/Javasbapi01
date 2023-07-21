@@ -3,9 +3,20 @@ package pt.bitclinic.webservices01.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_product" )
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private long id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
 	private String description;
 	private Double price;
@@ -15,7 +26,7 @@ public class Product implements Serializable {
 	public Product() {
 	}
 
-	public Product(long id, String name, String description, Double price, Category category, String imgUrl) {
+	public Product(Long id, String name, String description, Double price, Category category, String imgUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,11 +36,11 @@ public class Product implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
