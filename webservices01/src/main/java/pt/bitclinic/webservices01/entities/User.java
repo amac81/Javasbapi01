@@ -3,9 +3,14 @@ package pt.bitclinic.webservices01.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity(name = "tb_users" )
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private long id;
 	private String name;
 	private String email;
