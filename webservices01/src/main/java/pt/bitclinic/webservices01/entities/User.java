@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id 
 	private long id;
 	private String name;
 	private String email;
