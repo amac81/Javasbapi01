@@ -1,19 +1,20 @@
 package pt.bitclinic.webservices01.entities;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Payment {
+public class Category implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private long id;
-	private LocalDateTime moment;
+	private String name;
 
-	public Payment() {
+	public Category() {
 	}
 
-	public Payment(long id, LocalDateTime moment) {
+	public Category(long id, String name) {
 		super();
 		this.id = id;
-		this.moment = moment;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -24,12 +25,12 @@ public class Payment {
 		this.id = id;
 	}
 
-	public LocalDateTime getMoment() {
-		return moment;
+	public String getName() {
+		return name;
 	}
 
-	public void setMoment(LocalDateTime moment) {
-		this.moment = moment;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -45,13 +46,13 @@ public class Payment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Payment other = (Payment) obj;
+		Category other = (Category) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "Payment [id=" + id + ", moment=" + moment + "]";
+		return "Category [id=" + id + ", name=" + name + "]";
 	}
 
 }

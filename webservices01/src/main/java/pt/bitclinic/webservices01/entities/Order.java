@@ -2,6 +2,8 @@ package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import pt.bitclinic.webservices01.entities.enums.OrderStatus;
@@ -14,6 +16,7 @@ public class Order implements Serializable {
 	private OrderStatus orderstatus;
 	private Payment payment;
 	private User user;
+	private List<OrderItem> items = new ArrayList<>();
 
 	public Order() {
 	}
@@ -68,8 +71,26 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
+	public void addItem(OrderItem item) {
+		items.add(item);
+	}
+
+	public void removeItem(OrderItem item) {
+		items.remove(item);
+	}
+	
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+	
 	public double total() {
-		return 0.0;
+		Double sum = 0.0;
+
+		for (OrderItem oi : items) {
+			sum += oi.subTotal();
+		}
+		return sum;
 	}
 
 	@Override
