@@ -1,9 +1,11 @@
 package pt.bitclinic.webservices01.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Payment {
+public class Payment implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private LocalDateTime moment;
 
