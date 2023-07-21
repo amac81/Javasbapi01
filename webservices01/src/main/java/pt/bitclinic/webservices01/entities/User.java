@@ -3,10 +3,6 @@ package pt.bitclinic.webservices01.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Entity;
-
-
-@Entity
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
