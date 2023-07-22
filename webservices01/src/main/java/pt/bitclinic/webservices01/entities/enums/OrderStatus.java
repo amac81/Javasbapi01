@@ -1,4 +1,4 @@
-package pt.bitclinic.webservices01.entities.enums;
+	package pt.bitclinic.webservices01.entities.enums;
 
 public enum OrderStatus {
 	WAITING_PAYMENT(1),  

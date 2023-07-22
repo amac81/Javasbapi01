@@ -19,27 +19,24 @@ import pt.bitclinic.webservices01.entities.enums.OrderStatus;
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
 	private LocalDateTime moment;
-	
-	//@Enumerated(EnumType.STRING) // Use EnumType.ORDINAL if you want to store the enum ordinal value instead of its name
-	
-	@Enumerated(EnumType.ORDINAL) // Use EnumType.ORDINAL if you want to store the enum  name
+
+	@Enumerated(EnumType.ORDINAL) 
 	private OrderStatus orderstatus;
+	
 	@OneToOne
 	private Payment payment;
 	@OneToOne
 	private User user;
-	//private List<OrderItem> items = new ArrayList<>();
 
 	public Order() {
 	}
 
 	public Order(Long id, LocalDateTime moment, OrderStatus orderstatus, Payment payment, User user) {
-		super();
 		this.orderId = id;
 		this.moment = moment;
 		this.orderstatus = orderstatus;
@@ -79,7 +76,6 @@ public class Order implements Serializable {
 		this.payment = payment;
 	}
 
-		
 	public User getUser() {
 		return user;
 	}
@@ -88,26 +84,20 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	/*public void addItem(OrderItem item) {
-		items.add(item);
-	}
-
-	public void removeItem(OrderItem item) {
-		items.remove(item);
-	}
-	
-
-	public List<OrderItem> getItems() {
-		return items;
-	}
-	*/
+	/*
+	 * public void addItem(OrderItem item) { items.add(item); }
+	 * 
+	 * public void removeItem(OrderItem item) { items.remove(item); }
+	 * 
+	 * 
+	 * public List<OrderItem> getItems() { return items; }
+	 */
 	public double total() {
-	/*	Double sum = 0.0;
-
-		for (OrderItem oi : items) {
-			sum += oi.subTotal();
-		}
-		return sum;*/
+		/*
+		 * Double sum = 0.0;
+		 * 
+		 * for (OrderItem oi : items) { sum += oi.subTotal(); } return sum;
+		 */
 		return 0.0;
 	}
 
@@ -130,9 +120,8 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + orderId + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment=" + payment
-				+ ", user=" + user + "]";
+		return "Order [orderId=" + orderId + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment="
+				+ payment + ", user=" + user + "]";
 	}
-
 
 }
