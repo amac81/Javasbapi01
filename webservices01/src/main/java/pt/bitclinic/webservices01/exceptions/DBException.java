@@ -6,10 +6,10 @@ package pt.bitclinic.webservices01.exceptions;
 //the difference is that Exception forces the programmer to handle the exception
 //on the other hand, the RuntimeException class can help the user to handle other exceptions that occur (for example: the user types a letter in the input instead of a number)
 
-public class BusinessException extends RuntimeException {
+public class DBException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public BusinessException(String msg) {
+	public DBException(String msg) {
 		super(msg,null,false,false);
 	}
 

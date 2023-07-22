@@ -7,17 +7,17 @@ public enum OrderStatus {
 	DELIVERED(4), 
 	CANCELED(5);
 	
-	private int number;
+	private Integer number;
 
-	OrderStatus(int i) {
+	OrderStatus(Integer i) {
 		this.number = i;
 	}
 
-	public int getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}	
 }

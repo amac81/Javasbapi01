@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pt.bitclinic.webservices01.entities.User;
-import pt.bitclinic.webservices01.exceptions.BusinessException;
+import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.UserRepository;
 
 @Service
@@ -28,7 +28,7 @@ public class UserService {
 			User user = optionalUser.get();
 			return user;
 		} else {
-			throw new BusinessException("User with Id [" + id + "] not found.");
+			throw new DBException("User with Id [" + id + "] not found.");
 		}
 
 	}

@@ -4,16 +4,34 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import pt.bitclinic.webservices01.entities.enums.OrderStatus;
 
+@Entity
+@Table(name = "tb_order")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long orderId;
 	private LocalDateTime moment;
+	
+	//@Enumerated(EnumType.STRING) // Use EnumType.ORDINAL if you want to store the enum ordinal value instead of its name
+	
+	@Enumerated(EnumType.ORDINAL) // Use EnumType.ORDINAL if you want to store the enum  name
 	private OrderStatus orderstatus;
+	@OneToOne
 	private Payment payment;
+	@OneToOne
 	private User user;
 	//private List<OrderItem> items = new ArrayList<>();
 
@@ -22,7 +40,7 @@ public class Order implements Serializable {
 
 	public Order(Long id, LocalDateTime moment, OrderStatus orderstatus, Payment payment, User user) {
 		super();
-		this.id = id;
+		this.orderId = id;
 		this.moment = moment;
 		this.orderstatus = orderstatus;
 		this.payment = payment;
@@ -30,11 +48,11 @@ public class Order implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return orderId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.orderId = id;
 	}
 
 	public LocalDateTime getMoment() {
@@ -95,7 +113,7 @@ public class Order implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(orderId);
 	}
 
 	@Override
@@ -107,12 +125,12 @@ public class Order implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return id == other.id;
+		return orderId == other.orderId;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment=" + payment
+		return "Order [id=" + orderId + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment=" + payment
 				+ ", user=" + user + "]";
 	}
 
