@@ -36,13 +36,13 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-	
+
 	@Autowired
 	private PaymentRepository paymentRepository;
 
@@ -86,28 +86,31 @@ public class TestConfig implements CommandLineRunner {
 				"http://wwww.bitclinic.pt/products/img/7.jpg");
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
-		
+
 		Payment payment1 = new Payment(null, LocalDateTime.parse("2018-12-30T19:34:50.63"));
 		Payment payment2 = new Payment(null, LocalDateTime.now());
-		
-		
+
 		paymentRepository.saveAll(Arrays.asList(payment1, payment2));
-		
-		
-		Order order1 = new Order(null, LocalDateTime.now(),  OrderStatus.WAITING_PAYMENT, null, user1);
-		Order order2 = new Order(null, LocalDateTime.now(),  OrderStatus.CANCELED, payment1, user3);
-		Order order3 = new Order(null, LocalDateTime.now(),  OrderStatus.PAID, payment2, user6);
-		
+
+		Order order1 = new Order(null, LocalDateTime.now(), OrderStatus.WAITING_PAYMENT, null, user1);
+		Order order2 = new Order(null, LocalDateTime.now(), OrderStatus.CANCELED, payment1, user3);
+		Order order3 = new Order(null, LocalDateTime.now(), OrderStatus.PAID, payment2, user6);
+
 		orderRepository.saveAll(Arrays.asList(order1, order2, order3));
-		
-		
-		//public OrderItem(Product product, Order order, Integer quantity, Double discount) {
-		
+
+		// public OrderItem(Product product, Order order, Integer quantity, Double
+		// discount) {
+
 		OrderItem oi1 = new OrderItem(p1, order1, 2, 0.10);
-	
-		
-		orderItemRepository.saveAll(Arrays.asList(oi1));
-		
+		OrderItem oi2 = new OrderItem(p3, order1, 2, 0.10);
+		OrderItem oi3 = new OrderItem(p1, order2, 10, 0.20);
+		OrderItem oi4 = new OrderItem(p6, order2, 1, 0.10);
+		OrderItem oi5 = new OrderItem(p5, order3, 4, 0.10);
+		OrderItem oi6 = new OrderItem(p3, order3, 2, 0.00);
+		OrderItem oi7 = new OrderItem(p2, order2, 9, 0.20);
+		OrderItem oi8 = new OrderItem(p4, order1, 1, 0.00);
+
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5, oi6, oi7, oi8));
 
 	}
 
