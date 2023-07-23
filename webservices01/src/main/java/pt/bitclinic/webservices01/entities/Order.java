@@ -31,8 +31,7 @@ public class Order implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
-	@Enumerated(EnumType.ORDINAL) 
-	private OrderStatus orderstatus;
+	private Integer orderStatus;
 	
 	@OneToOne
 	private Payment payment;
@@ -44,10 +43,10 @@ public class Order implements Serializable {
 	public Order() {
 	}
 
-	public Order(Long id, Instant moment, OrderStatus orderstatus, Payment payment, User user) {
+	public Order(Long id, Instant moment, OrderStatus orderStatus, Payment payment, User user) {
 		this.orderId = id;
 		this.moment = moment;
-		this.orderstatus = orderstatus;
+		setOrderStatus(orderStatus);
 		this.payment = payment;
 		this.user = user;
 	}
@@ -68,12 +67,12 @@ public class Order implements Serializable {
 		this.moment = moment;
 	}
 
-	public OrderStatus getOrderstatus() {
-		return orderstatus;
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
 	}
 
-	public void setOrderstatus(OrderStatus orderstatus) {
-		this.orderstatus = orderstatus;
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus.getCode();
 	}
 
 	public Payment getPayment() {
@@ -128,7 +127,7 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment="
+		return "Order [orderId=" + orderId + ", moment=" + moment + ", orderStatus=" + orderStatus + ", payment="
 				+ payment + ", user=" + user + "]";
 	}
 

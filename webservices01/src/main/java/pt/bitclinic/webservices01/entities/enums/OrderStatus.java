@@ -1,23 +1,29 @@
-	package pt.bitclinic.webservices01.entities.enums;
+package pt.bitclinic.webservices01.entities.enums;
 
 public enum OrderStatus {
-	WAITING_PAYMENT(1),  
-	PAID(2), 
-	SHIPPED(3), 
-	DELIVERED(4), 
-	CANCELED(5);
-	
-	private Integer number;
+	WAITING_PAYMENT(1), PAID(2), SHIPPED(3), DELIVERED(4), CANCELED(5);
 
-	OrderStatus(Integer i) {
-		this.number = i;
+	private int code;
+
+	private OrderStatus(int i) {
+		this.code = i;
 	}
 
-	public Integer getNumber() {
-		return number;
+	public int getCode() {
+		return code;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
-	}	
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public static OrderStatus valueOf(int code) {
+		for (OrderStatus os : OrderStatus.values()) {
+			if (os.getCode() == code) {
+				return os;
+			}
+		}
+
+		throw new IllegalArgumentException("Invalid OrderStatus Code");
+	}
 }
