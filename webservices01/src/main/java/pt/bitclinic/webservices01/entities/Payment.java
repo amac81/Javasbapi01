@@ -1,7 +1,7 @@
 package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -18,12 +18,12 @@ public class Payment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDateTime moment;
+	private Instant moment;
 
 	public Payment() {
 	}
 
-	public Payment(Long id, LocalDateTime moment) {
+	public Payment(Long id, Instant moment) {
 		super();
 		this.id = id;
 		this.moment = moment;
@@ -37,11 +37,11 @@ public class Payment implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getMoment() {
+	public Instant getMoment() {
 		return moment;
 	}
 
-	public void setMoment(LocalDateTime moment) {
+	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 

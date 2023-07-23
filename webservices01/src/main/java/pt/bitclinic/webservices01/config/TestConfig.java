@@ -1,6 +1,6 @@
 package pt.bitclinic.webservices01.config;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import pt.bitclinic.webservices01.repositories.UserRepository;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner {
+public class TestConfig implements CommandLineRunner { //to run when program starts	
 
 	// Dependence injection
 
@@ -87,19 +87,20 @@ public class TestConfig implements CommandLineRunner {
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 
-		Payment payment1 = new Payment(null, LocalDateTime.parse("2018-12-30T19:34:50.63"));
-		Payment payment2 = new Payment(null, LocalDateTime.now());
+		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z"));
+		Payment payment2 = new Payment(null, Instant.parse("2022-01-22T09:14:03Z"));
+		Payment payment3 = new Payment(null, Instant.now());
 
-		paymentRepository.saveAll(Arrays.asList(payment1, payment2));
+		paymentRepository.saveAll(Arrays.asList(payment1, payment2, payment3));
 
-		Order order1 = new Order(null, LocalDateTime.now(), OrderStatus.WAITING_PAYMENT, null, user1);
-		Order order2 = new Order(null, LocalDateTime.now(), OrderStatus.CANCELED, payment1, user3);
-		Order order3 = new Order(null, LocalDateTime.now(), OrderStatus.PAID, payment2, user6);
+		Order order1 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, null, user1);
+		Order order2 = new Order(null, Instant.now(), OrderStatus.CANCELED, null, user3);
+		Order order3 = new Order(null, Instant.parse("2022-12-23T02:12:30Z"), OrderStatus.DELIVERED, payment2, user1);
+		Order order4 = new Order(null, Instant.parse("2018-01-02T10:14:10Z"), OrderStatus.PAID, payment1, user3);
+		Order order5 = new Order(null, Instant.now(), OrderStatus.PAID, payment3, user2);
+		Order order6 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, null, user1);
 
-		orderRepository.saveAll(Arrays.asList(order1, order2, order3));
-
-		// public OrderItem(Product product, Order order, Integer quantity, Double
-		// discount) {
+		orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5, order6));
 
 		OrderItem oi1 = new OrderItem(p1, order1, 2, 0.10);
 		OrderItem oi2 = new OrderItem(p3, order1, 2, 0.10);

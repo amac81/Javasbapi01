@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.bitclinic.webservices01.entities.User;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.services.UserService;
 
 @RestController

@@ -1,7 +1,7 @@
 package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -10,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import pt.bitclinic.webservices01.entities.enums.OrderStatus;
@@ -23,20 +25,22 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
-	private LocalDateTime moment;
+	private Instant moment;
 
 	@Enumerated(EnumType.ORDINAL) 
 	private OrderStatus orderstatus;
 	
 	@OneToOne
 	private Payment payment;
-	@OneToOne
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	public Order() {
 	}
 
-	public Order(Long id, LocalDateTime moment, OrderStatus orderstatus, Payment payment, User user) {
+	public Order(Long id, Instant moment, OrderStatus orderstatus, Payment payment, User user) {
 		this.orderId = id;
 		this.moment = moment;
 		this.orderstatus = orderstatus;
@@ -52,11 +56,11 @@ public class Order implements Serializable {
 		this.orderId = id;
 	}
 
-	public LocalDateTime getMoment() {
+	public Instant getMoment() {
 		return moment;
 	}
 
-	public void setMoment(LocalDateTime moment) {
+	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 
