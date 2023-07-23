@@ -24,7 +24,7 @@ import pt.bitclinic.webservices01.repositories.UserRepository;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner { //to run when program starts	
+public class TestConfig implements CommandLineRunner { // to run when program starts
 
 	// Dependence injection
 
@@ -70,24 +70,24 @@ public class TestConfig implements CommandLineRunner { //to run when program sta
 
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6));
 
-		Product p1 = new Product(null, "Shoes", "Black pair of shoes, made with..", 30.44, cat3,
+		Product p1 = new Product(null, "Shoes", "Black pair of shoes, made with..", 30.44,
 				"http://wwww.bitclinic.pt/products/img/1.jpg");
-		Product p2 = new Product(null, "Watch", "Elegant wristwatch with a leather strap..", 99.99, cat3,
+		Product p2 = new Product(null, "Watch", "Elegant wristwatch with a leather strap..", 99.99,
 				"http://wwww.bitclinic.pt/products/img/2.jpg");
-		Product p3 = new Product(null, "Phone Case", "Durable phone case for various models..", 15.99, cat1,
+		Product p3 = new Product(null, "Phone Case", "Durable phone case for various models..", 15.99,
 				"http://wwww.bitclinic.pt/products/img/3.jpg");
-		Product p4 = new Product(null, "Headphones", "Wireless headphones with noise-canceling..", 79.95, cat1,
+		Product p4 = new Product(null, "Headphones", "Wireless headphones with noise-canceling..", 79.95,
 				"http://wwww.bitclinic.pt/products/img/4.jpg");
-		Product p5 = new Product(null, "Backpack", "Spacious backpack with multiple compartments..", 49.99, cat6,
+		Product p5 = new Product(null, "Backpack", "Spacious backpack with multiple compartments..", 49.99,
 				"http://wwww.bitclinic.pt/products/img/5.jpg");
-		Product p6 = new Product(null, "Gaming Mouse", "High-precision gaming mouse with customizable..", 39.99, cat7,
+		Product p6 = new Product(null, "Gaming Mouse", "High-precision gaming mouse with customizable..", 39.99,
 				"http://wwww.bitclinic.pt/products/img/6.jpg");
-		Product p7 = new Product(null, "Laptop Stand", "Adjustable laptop stand for ergonomic..", 29.95, cat7,
+		Product p7 = new Product(null, "Laptop Stand", "Adjustable laptop stand for ergonomic..", 29.95,
 				"http://wwww.bitclinic.pt/products/img/7.jpg");
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 
-		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z")); //ISO 8601 date/hour format
+		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z")); // ISO 8601 date/hour format
 		Payment payment2 = new Payment(null, Instant.parse("2022-01-22T09:14:03Z"));
 		Payment payment3 = new Payment(null, Instant.now());
 

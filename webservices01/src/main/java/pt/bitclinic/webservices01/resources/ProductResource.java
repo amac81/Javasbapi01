@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.bitclinic.webservices01.entities.Order;
-import pt.bitclinic.webservices01.services.OrderService;
+import pt.bitclinic.webservices01.entities.Product;
+import pt.bitclinic.webservices01.services.ProductService;
 
 @RestController
-@RequestMapping(value = "/orders")
-public class OrderResource {
+@RequestMapping(value = "/products")
+public class ProductResource {
 
 	@Autowired
-	private OrderService orderService;
+	private ProductService productService;
 
 	@GetMapping
-	public ResponseEntity<List<Order>> findAll() {
+	public ResponseEntity<List<Product>> findAll() {
 		
-		List<Order> OrderList = orderService.findAll();
+		List<Product> ProductList = productService.findAll();
 
-		return ResponseEntity.ok().body(OrderList);
+		return ResponseEntity.ok().body(ProductList);
 
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Order> findById(@PathVariable Long id) {
-		return ResponseEntity.ok().body(orderService.findById(id));
+	public ResponseEntity<Product> findById(@PathVariable Long id) {
+		return ResponseEntity.ok().body(productService.findById(id));
 	}
 
 }
