@@ -87,7 +87,7 @@ public class TestConfig implements CommandLineRunner { //to run when program sta
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 
-		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z"));
+		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z")); //ISO 8601 date/hour format
 		Payment payment2 = new Payment(null, Instant.parse("2022-01-22T09:14:03Z"));
 		Payment payment3 = new Payment(null, Instant.now());
 
