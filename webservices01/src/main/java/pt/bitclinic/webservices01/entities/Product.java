@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +40,9 @@ public class Product implements Serializable {
 	inverseJoinColumns= @JoinColumn(name = "category_id"))
 	//Use of Set to ensure that there isn't a product with more than one occurrence of the same category
 	private Set <Category> categories = new HashSet<>();
+	
+	@OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> orderItems = new HashSet<>();
 
 	public Product() {
 	}
@@ -93,6 +99,18 @@ public class Product implements Serializable {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+	
+	//in JEE what matters is the get method; to avoid "loop"
+	@JsonIgnore
+	public Set<Order> getOrders() {
+		Set <Order> orders = new HashSet<> ();
+		
+		for(OrderItem oi: orderItems){
+			orders.add(oi.getOrder());
+		}
+		
+		return orders;
 	}
 
 	@Override
