@@ -18,7 +18,6 @@ import pt.bitclinic.webservices01.entities.enums.OrderStatus;
 import pt.bitclinic.webservices01.repositories.CategoryRepository;
 import pt.bitclinic.webservices01.repositories.OrderItemRepository;
 import pt.bitclinic.webservices01.repositories.OrderRepository;
-import pt.bitclinic.webservices01.repositories.PaymentRepository;
 import pt.bitclinic.webservices01.repositories.ProductRepository;
 import pt.bitclinic.webservices01.repositories.UserRepository;
 
@@ -42,9 +41,6 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-
-	@Autowired
-	private PaymentRepository paymentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -84,6 +80,8 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 		Product p7 = new Product(null, "Laptop Stand", "Adjustable laptop stand for ergonomic..", 29.95,
 				"http://wwww.bitclinic.pt/products/img/7.jpg");
 		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
+		
 		p1.getCategories().add(cat3);
 		p2.getCategories().add(cat3);
 		p2.getCategories().add(cat6);
@@ -98,19 +96,27 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 				
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 		
-		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z")); // ISO 8601 date/hour format
-		Payment payment2 = new Payment(null, Instant.parse("2022-01-22T09:14:03Z"));
-		Payment payment3 = new Payment(null, Instant.now());
-		paymentRepository.saveAll(Arrays.asList(payment1, payment2, payment3));
-
-		Order order1 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, null, user1);
-		Order order2 = new Order(null, Instant.now(), OrderStatus.CANCELED, null, user3);
-		Order order3 = new Order(null, Instant.parse("2022-12-23T02:12:30Z"), OrderStatus.DELIVERED, payment2, user1);
-		Order order4 = new Order(null, Instant.parse("2018-01-02T10:14:10Z"), OrderStatus.PAID, payment1, user3);
-		Order order5 = new Order(null, Instant.now(), OrderStatus.PAID, payment3, user2);
-		Order order6 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, null, user1);
+	
+		Order order1 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, user1);
+		Order order2 = new Order(null, Instant.now(), OrderStatus.CANCELED, user3);
+		Order order3 = new Order(null, Instant.parse("2022-12-23T02:12:30Z"), OrderStatus.DELIVERED, user1);
+		Order order4 = new Order(null, Instant.parse("2018-01-02T10:14:10Z"), OrderStatus.PAID, user3);
+		Order order5 = new Order(null, Instant.now(), OrderStatus.PAID, user2);
+		Order order6 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, user1);
 		orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5, order6));
 
+		
+		Payment payment1 = new Payment(null, Instant.parse("2018-12-30T19:34:50Z"), order4); // ISO 8601 date/hour format
+		Payment payment2 = new Payment(null, Instant.parse("2022-01-22T09:14:03Z"), order3);
+		Payment payment3 = new Payment(null, Instant.now(), order5);
+		
+		
+		order4.setPayment(payment1);
+		order3.setPayment(payment2);		
+		order5.setPayment(payment3);		
+		orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5, order6));
+
+		
 		OrderItem oi1 = new OrderItem(order1, p1, 2, p1.getPrice(), 0.10);
 		OrderItem oi2 = new OrderItem(order1, p3, 2, p2.getPrice(), 0.10);
 		OrderItem oi3 = new OrderItem(order2, p1, 10, p1.getPrice(), 0.20);

@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,13 +21,18 @@ public class Payment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant moment;
+	
+	@OneToOne //independent class
+	@MapsId
+	private Order order;
 
 	public Payment() {
 	}
 
-	public Payment(Long id, Instant moment) {
+	public Payment(Long id, Instant moment, Order order) {
 		this.id = id;
 		this.moment = moment;
+		this.order = order;
 	}
 
 	public Long getId() {
@@ -59,11 +66,6 @@ public class Payment implements Serializable {
 			return false;
 		Payment other = (Payment) obj;
 		return id == other.id;
-	}
-
-	@Override
-	public String toString() {
-		return "Payment [id=" + id + ", moment=" + moment + "]";
 	}
 
 }

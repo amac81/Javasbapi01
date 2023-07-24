@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,14 +28,14 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long orderId;
+	private Long id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
 
-	@OneToOne
+	@OneToOne (mappedBy = "order", cascade = CascadeType.ALL) //dependent class
 	private Payment payment;
 
 	@ManyToOne
@@ -47,20 +48,19 @@ public class Order implements Serializable {
 	public Order() {
 	}
 
-	public Order(Long id, Instant moment, OrderStatus orderStatus, Payment payment, User user) {
-		this.orderId = id;
+	public Order(Long id, Instant moment, OrderStatus orderStatus, User user) {
+		this.id = id;
 		this.moment = moment;
 		setOrderStatus(orderStatus);
-		this.payment = payment;
 		this.user = user;
 	}
 
 	public Long getId() {
-		return orderId;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.orderId = id;
+		this.id = id;
 	}
 
 	public Instant getMoment() {
@@ -110,7 +110,7 @@ public class Order implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderId);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -122,13 +122,7 @@ public class Order implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return orderId == other.orderId;
-	}
-
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", moment=" + moment + ", orderStatus=" + orderStatus + ", payment="
-				+ payment + ", user=" + user + "]";
+		return id == other.id;
 	}
 
 }
