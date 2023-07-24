@@ -2,6 +2,8 @@ package pt.bitclinic.webservices01.entities;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,6 +13,7 @@ import pt.bitclinic.webservices01.entities.pks.OrderItemPK;
 @Table(name = "tb_order_item")
 public class OrderItem {
 	
+
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
 	private Integer quantity;
@@ -28,6 +31,8 @@ public class OrderItem {
 		this.productPrice = productPrice;
 	}
 	
+	//in JEE what matters is the get method; to avoid "loop"
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
@@ -66,6 +71,10 @@ public class OrderItem {
 
 	public void setDiscount(Double discount) {
 		this.discount = discount;
+	}
+	
+	public double subtotal() {		
+		return (quantity * productPrice) - (productPrice * discount);		
 	}
 
 	@Override

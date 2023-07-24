@@ -2,7 +2,9 @@ package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import pt.bitclinic.webservices01.entities.enums.OrderStatus;
@@ -25,18 +28,21 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
-	
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
-	
+
 	@OneToOne
 	private Payment payment;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> orderItems = new HashSet<>();
 
 	public Order() {
 	}
@@ -89,21 +95,17 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	/*
-	 * public void addItem(OrderItem item) { items.add(item); }
-	 * 
-	 * public void removeItem(OrderItem item) { items.remove(item); }
-	 * 
-	 * 
-	 * public List<OrderItem> getItems() { return items; }
-	 */
+	public Set<OrderItem> getItems() {
+		return orderItems;
+	}
+
 	public double total() {
-		/*
-		 * Double sum = 0.0;
-		 * 
-		 * for (OrderItem oi : items) { sum += oi.subTotal(); } return sum;
-		 */
-		return 0.0;
+		Double sum = 0.0;
+
+		for (OrderItem oi : orderItems) {
+			sum += oi.subtotal();
+		}
+		return sum;
 	}
 
 	@Override
