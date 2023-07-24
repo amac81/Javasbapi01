@@ -1,10 +1,12 @@
-package pt.bitclinic.webservices01.entities;
+package pt.bitclinic.webservices01.entities.pks;
 
 import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import pt.bitclinic.webservices01.entities.Order;
+import pt.bitclinic.webservices01.entities.Product;
 
 @Embeddable
 public class OrderItemPK {

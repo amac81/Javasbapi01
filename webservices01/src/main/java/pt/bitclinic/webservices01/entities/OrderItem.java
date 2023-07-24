@@ -5,6 +5,7 @@ import java.util.Objects;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import pt.bitclinic.webservices01.entities.pks.OrderItemPK;
 
 @Entity
 @Table(name = "tb_orderitem")
@@ -13,18 +14,18 @@ public class OrderItem {
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
 	private Integer quantity;
-	private Double itemPrice;
+	private Double productPrice;
 	private Double discount;
 
 	public OrderItem() {
 	}
 
-	public OrderItem(Product product, Order order, Integer quantity, Double itemPrice, Double discount) {
+	public OrderItem(Product product, Order order, Integer quantity, Double productPrice, Double discount) {
 		id.setProduct(product);
 		id.setOrder(order);
 		this.discount = discount;
 		this.quantity = quantity;
-		this.itemPrice = itemPrice;
+		this.productPrice = productPrice;
 	}
 
 	public OrderItemPK getId() {
@@ -43,12 +44,12 @@ public class OrderItem {
 		this.quantity = quantity;
 	}
 	
-	public Double getItemPrice() {
-		return itemPrice;
+	public Double getProductPrice() {
+		return productPrice;
 	}
 
-	public void setItemPrice(Double itemPrice) {
-		this.itemPrice = itemPrice;
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
 	}
 
 	public Double getDiscount() {
