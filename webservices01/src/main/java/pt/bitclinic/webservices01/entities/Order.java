@@ -1,57 +1,76 @@
 package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import pt.bitclinic.webservices01.entities.enums.OrderStatus;
 
+@Entity
+@Table(name = "tb_order")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private long id;
-	private LocalDateTime moment;
-	private OrderStatus orderstatus;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long orderId;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant moment;
+
+	private Integer orderStatus;
+	
+	@OneToOne
 	private Payment payment;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
-	private List<OrderItem> items = new ArrayList<>();
 
 	public Order() {
 	}
 
-	public Order(long id, LocalDateTime moment, OrderStatus orderstatus, Payment payment, User user) {
-		super();
-		this.id = id;
+	public Order(Long id, Instant moment, OrderStatus orderStatus, Payment payment, User user) {
+		this.orderId = id;
 		this.moment = moment;
-		this.orderstatus = orderstatus;
+		setOrderStatus(orderStatus);
 		this.payment = payment;
 		this.user = user;
 	}
 
-	public long getId() {
-		return id;
+	public Long getId() {
+		return orderId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(Long id) {
+		this.orderId = id;
 	}
 
-	public LocalDateTime getMoment() {
+	public Instant getMoment() {
 		return moment;
 	}
 
-	public void setMoment(LocalDateTime moment) {
+	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 
-	public OrderStatus getOrderstatus() {
-		return orderstatus;
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
 	}
 
-	public void setOrderstatus(OrderStatus orderstatus) {
-		this.orderstatus = orderstatus;
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus.getCode();
 	}
 
 	public Payment getPayment() {
@@ -62,7 +81,6 @@ public class Order implements Serializable {
 		this.payment = payment;
 	}
 
-		
 	public User getUser() {
 		return user;
 	}
@@ -71,31 +89,26 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	public void addItem(OrderItem item) {
-		items.add(item);
-	}
-
-	public void removeItem(OrderItem item) {
-		items.remove(item);
-	}
-	
-
-	public List<OrderItem> getItems() {
-		return items;
-	}
-	
+	/*
+	 * public void addItem(OrderItem item) { items.add(item); }
+	 * 
+	 * public void removeItem(OrderItem item) { items.remove(item); }
+	 * 
+	 * 
+	 * public List<OrderItem> getItems() { return items; }
+	 */
 	public double total() {
-		Double sum = 0.0;
-
-		for (OrderItem oi : items) {
-			sum += oi.subTotal();
-		}
-		return sum;
+		/*
+		 * Double sum = 0.0;
+		 * 
+		 * for (OrderItem oi : items) { sum += oi.subTotal(); } return sum;
+		 */
+		return 0.0;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(orderId);
 	}
 
 	@Override
@@ -107,14 +120,13 @@ public class Order implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return id == other.id;
+		return orderId == other.orderId;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", moment=" + moment + ", orderstatus=" + orderstatus + ", payment=" + payment
-				+ ", user=" + user + "]";
+		return "Order [orderId=" + orderId + ", moment=" + moment + ", orderStatus=" + orderStatus + ", payment="
+				+ payment + ", user=" + user + "]";
 	}
-
 
 }

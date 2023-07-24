@@ -1,28 +1,43 @@
 package pt.bitclinic.webservices01.entities;
 
-import java.io.Serializable;
+import java.util.Objects;
 
-public class OrderItem implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private int quantity;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_orderitem")
+public class OrderItem {
+	
+	@EmbeddedId
+	private OrderItemPK id = new OrderItemPK();
+	private Integer quantity;
 	private Double discount;
-	private Product product;
 
 	public OrderItem() {
 	}
 
-	public OrderItem(int quantity, Double discount, Product product) {
-		super();
-		this.quantity = quantity;
+	public OrderItem(Product product, Order order, Integer quantity, Double discount) {
+		id.setProduct(product);
+		id.setOrder(order);
 		this.discount = discount;
-		this.product = product;
+		this.quantity = quantity;
 	}
 
-	public int getQuantity() {
+	public OrderItemPK getId() {
+		return id;
+	}
+
+	public void setId(OrderItemPK id) {
+		this.id = id;
+	}
+
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
@@ -34,22 +49,23 @@ public class OrderItem implements Serializable {
 		this.discount = discount;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Double subTotal() {
-		return quantity * product.getPrice() - discount;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	@Override
-	public String toString() {
-		return "OrderItem [quantity=" + quantity + ", discount=" + discount + ", price=" + product.getPrice()
-				+ ", name=" + product.getName() + "]";
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderItem other = (OrderItem) obj;
+		return Objects.equals(id, other.id);
 	}
+
+
 
 }

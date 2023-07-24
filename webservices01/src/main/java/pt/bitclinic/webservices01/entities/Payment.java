@@ -1,36 +1,46 @@
 package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_payment")
 public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private long id;
-	private LocalDateTime moment;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private Instant moment;
 
 	public Payment() {
 	}
 
-	public Payment(long id, LocalDateTime moment) {
-		super();
+	public Payment(Long id, Instant moment) {
 		this.id = id;
 		this.moment = moment;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public LocalDateTime getMoment() {
+	public Instant getMoment() {
 		return moment;
 	}
 
-	public void setMoment(LocalDateTime moment) {
+	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 

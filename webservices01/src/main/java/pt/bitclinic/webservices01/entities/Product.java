@@ -1,35 +1,53 @@
 package pt.bitclinic.webservices01.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name = "tb_product" )
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private long id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
+	
+	@Column(columnDefinition = "TEXT") //more than 255 characters
 	private String description;
 	private Double price;
-	private Category category;
 	private String imgUrl;
+	
+	//to ensure that there isn't a product with more than one occurrence of the same category
+	@Transient
+	private Set <Category> categories = new HashSet<>();
 
 	public Product() {
 	}
 
-	public Product(long id, String name, String description, Double price, Category category, String imgUrl) {
-		super();
+	public Product(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.category = category;
 		this.imgUrl = imgUrl;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -57,13 +75,11 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
-	public Category getCategory() {
-		return category;
+
+	public Set<Category> getCategories() {
+		return categories;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
 
 	public String getImgUrl() {
 		return imgUrl;
@@ -93,7 +109,7 @@ public class Product implements Serializable {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", category=" + category + ", imgUrl=" + imgUrl + "]";
+				+ ", imgUrl=" + imgUrl + "]";
 	}
 
 }
