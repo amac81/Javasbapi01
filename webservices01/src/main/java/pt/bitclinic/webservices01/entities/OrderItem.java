@@ -75,7 +75,7 @@ public class OrderItem {
 	}
 	
 	public double subtotal() {		
-		return (quantity * productPrice) - (productPrice * discount);		
+		return quantity * productPrice * (1 - discount);		
 	}
 
 	@Override

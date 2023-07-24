@@ -35,8 +35,8 @@ public class OrderService {
 		}
 	}
 	
-	public void add(Order Order) {
-		orderRepository.save(Order);
+	public Double orderTotal(Long id) {
+		return findById(id).total();
 	}
 	
 

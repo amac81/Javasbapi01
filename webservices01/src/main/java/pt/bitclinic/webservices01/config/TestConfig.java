@@ -69,8 +69,10 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 				"http://wwww.bitclinic.pt/products/img/1.jpg");
 		Product p2 = new Product(null, "Watch", "Elegant wristwatch with a leather strap..", 99.99,
 				"http://wwww.bitclinic.pt/products/img/2.jpg");
+		
 		Product p3 = new Product(null, "Phone Case", "Durable phone case for various models..", 15.99,
 				"http://wwww.bitclinic.pt/products/img/3.jpg");
+		
 		Product p4 = new Product(null, "Headphones", "Wireless headphones with noise-canceling..", 79.95,
 				"http://wwww.bitclinic.pt/products/img/4.jpg");
 		Product p5 = new Product(null, "Backpack", "Spacious backpack with multiple compartments..", 49.99,
@@ -118,13 +120,16 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 
 		
 		OrderItem oi1 = new OrderItem(order1, p1, 2, p1.getPrice(), 0.10);
-		OrderItem oi2 = new OrderItem(order1, p3, 2, p2.getPrice(), 0.10);
-		OrderItem oi3 = new OrderItem(order2, p1, 10, p1.getPrice(), 0.20);
+		OrderItem oi2 = new OrderItem(order1, p3, 2, p3.getPrice(), 0.10);
+		OrderItem oi3 = new OrderItem(order1, p4, 1, p4.getPrice(), 0.00);
+		
 		OrderItem oi4 = new OrderItem(order2, p6, 1, p6.getPrice(), 0.10);
-		OrderItem oi5 = new OrderItem(order3, p5, 4, p5.getPrice(), 0.10);
+		OrderItem oi5 = new OrderItem(order2, p2, 9, p2.getPrice(), 0.20);
+		
 		OrderItem oi6 = new OrderItem(order3, p3, 2, p3.getPrice(), 0.00);
-		OrderItem oi7 = new OrderItem(order2, p2, 9, p2.getPrice(), 0.20);
-		OrderItem oi8 = new OrderItem(order1, p4, 1, p4.getPrice(), 0.00);
+		OrderItem oi7 = new OrderItem(order4, p5, 4, p5.getPrice(), 0.10);
+		OrderItem oi8 = new OrderItem(order5, p1, 10, p1.getPrice(), 0.20);
+		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5, oi6, oi7, oi8));
 
 	}
