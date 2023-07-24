@@ -35,9 +35,4 @@ public class OrderService {
 		}
 	}
 	
-	public Double orderTotal(Long id) {
-		return findById(id).total();
-	}
-	
-
 }

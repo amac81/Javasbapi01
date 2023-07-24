@@ -74,7 +74,7 @@ public class OrderItem {
 		this.discount = discount;
 	}
 	
-	public double subtotal() {		
+	public double getSubTotal() {		
 		return quantity * productPrice * (1 - discount);		
 	}
 

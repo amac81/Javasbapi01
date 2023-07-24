@@ -101,8 +101,8 @@ public class Product implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 	
-	//in JEE what matters is the get method; to avoid "loop"
-	@JsonIgnore
+	//in JEE what matters is the "get" word (to serialize to Json)
+	@JsonIgnore //to avoid "loop"
 	public Set<Order> getOrders() {
 		Set <Order> orders = new HashSet<> ();
 		

@@ -99,11 +99,13 @@ public class Order implements Serializable {
 		return orderItems;
 	}
 
-	public double total() {
+	//in JEE what matters is the "get" word (to serialize to Json)
+	//public double total() won't work
+	public double getTotal() {
 		Double sum = 0.0;
 
 		for (OrderItem oi : orderItems) {
-			sum += oi.subtotal();
+			sum += oi.getSubTotal();
 		}
 		return sum;
 	}
