@@ -13,16 +13,18 @@ public class OrderItem {
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
 	private Integer quantity;
+	private Double itemPrice;
 	private Double discount;
 
 	public OrderItem() {
 	}
 
-	public OrderItem(Product product, Order order, Integer quantity, Double discount) {
+	public OrderItem(Product product, Order order, Integer quantity, Double itemPrice, Double discount) {
 		id.setProduct(product);
 		id.setOrder(order);
 		this.discount = discount;
 		this.quantity = quantity;
+		this.itemPrice = itemPrice;
 	}
 
 	public OrderItemPK getId() {
@@ -39,6 +41,14 @@ public class OrderItem {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	public Double getItemPrice() {
+		return itemPrice;
+	}
+
+	public void setItemPrice(Double itemPrice) {
+		this.itemPrice = itemPrice;
 	}
 
 	public Double getDiscount() {

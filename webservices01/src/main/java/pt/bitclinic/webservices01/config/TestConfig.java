@@ -111,14 +111,14 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 		Order order6 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, null, user1);
 		orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5, order6));
 
-		OrderItem oi1 = new OrderItem(p1, order1, 2, 0.10);
-		OrderItem oi2 = new OrderItem(p3, order1, 2, 0.10);
-		OrderItem oi3 = new OrderItem(p1, order2, 10, 0.20);
-		OrderItem oi4 = new OrderItem(p6, order2, 1, 0.10);
-		OrderItem oi5 = new OrderItem(p5, order3, 4, 0.10);
-		OrderItem oi6 = new OrderItem(p3, order3, 2, 0.00);
-		OrderItem oi7 = new OrderItem(p2, order2, 9, 0.20);
-		OrderItem oi8 = new OrderItem(p4, order1, 1, 0.00);
+		OrderItem oi1 = new OrderItem(p1, order1, 2, p1.getPrice(), 0.10);
+		OrderItem oi2 = new OrderItem(p3, order1, 2, p2.getPrice(), 0.10);
+		OrderItem oi3 = new OrderItem(p1, order2, 10, p1.getPrice(), 0.20);
+		OrderItem oi4 = new OrderItem(p6, order2, 1, p6.getPrice(), 0.10);
+		OrderItem oi5 = new OrderItem(p5, order3, 4, p5.getPrice(), 0.10);
+		OrderItem oi6 = new OrderItem(p3, order3, 2, p3.getPrice(), 0.00);
+		OrderItem oi7 = new OrderItem(p2, order2, 9, p2.getPrice(), 0.20);
+		OrderItem oi8 = new OrderItem(p4, order1, 1, p4.getPrice(), 0.00);
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5, oi6, oi7, oi8));
 
 	}
