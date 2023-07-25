@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.persistence.EntityNotFoundException;
 import pt.bitclinic.webservices01.entities.User;
 import pt.bitclinic.webservices01.repositories.UserRepository;
 import pt.bitclinic.webservices01.services.exceptions.DatabaseException;
@@ -47,11 +48,16 @@ public class UserService {
 	}
 
 	public User update(Long id, User obj) {
-		//getReferenceById more efficient than findById
-		//getReferenceById only "prepares" the monitored object 
-		User entity = userRepository.getReferenceById(id);
-		updateData(entity, obj);
-		return userRepository.save(entity);
+		try {
+			//getReferenceById more efficient than findById
+			//getReferenceById only "prepares" the monitored object 
+			User entity = userRepository.getReferenceById(id);
+			updateData(entity, obj);
+			return userRepository.save(entity);
+			
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}	
 	}
 	
 	private void updateData(User entity, User obj) {
