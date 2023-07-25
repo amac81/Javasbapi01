@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import pt.bitclinic.webservices01.entities.User;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.UserRepository;
+import pt.bitclinic.webservices01.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -24,15 +24,8 @@ public class UserService {
 
 	@Transactional(readOnly = true)	
 	public User findById(Long id) {
-
-		Optional<User> optionalUser = userRepository.findById(id);
-				
-		if (optionalUser.isPresent()) {
-			User user = optionalUser.get();
-			return user;
-		} else {
-			throw new DBException("User with Id [" + id + "] not found.");
-		}
+		Optional<User> obj = userRepository.findById(id);
+		return obj.orElseThrow(()->  new ResourceNotFoundException(id));
 	}
 	
 	public User insert(User obj) {

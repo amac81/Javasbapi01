@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pt.bitclinic.webservices01.entities.Payment;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.PaymentRepository;
+import pt.bitclinic.webservices01.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class PaymentService {
@@ -32,7 +32,7 @@ public class PaymentService {
 			Payment payment = optionalpayment.get();
 			return payment;
 		} else {
-			throw new DBException("payment with Id [" + id + "] not found.");
+			throw new ResourceNotFoundException("payment with Id [" + id + "] not found.");
 		}
 	}
 	

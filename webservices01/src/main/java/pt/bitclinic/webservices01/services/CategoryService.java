@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pt.bitclinic.webservices01.entities.Category;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.CategoryRepository;
+import pt.bitclinic.webservices01.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CategoryService {
@@ -31,7 +31,7 @@ public class CategoryService {
 			Category Category = optionalCategory.get();
 			return Category;
 		} else {
-			throw new DBException("Category with Id [" + id + "] not found.");
+			throw new ResourceNotFoundException("Category with Id [" + id + "] not found.");
 		}
 	}
 	

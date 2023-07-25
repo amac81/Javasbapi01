@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pt.bitclinic.webservices01.entities.Product;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.ProductRepository;
+import pt.bitclinic.webservices01.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProductService {
@@ -31,7 +31,7 @@ public class ProductService {
 			Product Product = optionalProduct.get();
 			return Product;
 		} else {
-			throw new DBException("Product with Id [" + id + "] not found.");
+			throw new ResourceNotFoundException("Product with Id [" + id + "] not found.");
 		}
 	}
 	

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pt.bitclinic.webservices01.entities.Order;
-import pt.bitclinic.webservices01.exceptions.DBException;
 import pt.bitclinic.webservices01.repositories.OrderRepository;
+import pt.bitclinic.webservices01.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class OrderService {
@@ -31,7 +31,7 @@ public class OrderService {
 			Order Order = optionalOrder.get();
 			return Order;
 		} else {
-			throw new DBException("Order with Id [" + id + "] not found.");
+			throw new ResourceNotFoundException("Order with Id [" + id + "] not found.");
 		}
 	}
 	
