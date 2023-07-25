@@ -39,19 +39,19 @@ public class UserResource {
 	@PostMapping
 	public ResponseEntity<User> insert(@RequestBody User obj) {
 		obj = userService.insert(obj);
-		//to generate the correct HTTP response code 201 - Created
+		// to generate the correct HTTP response code 201 - Created
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{id}").buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		userService.delete(id);
-		//generate HTTP response code 204 - No Content
-		return ResponseEntity.noContent().build();		
+		// generate HTTP response code 204 - No Content
+		return ResponseEntity.noContent().build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
 		obj = userService.update(id, obj);
