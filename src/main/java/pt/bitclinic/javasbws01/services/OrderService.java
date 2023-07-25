@@ -1,0 +1,40 @@
+package pt.bitclinic.javasbws01.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import pt.bitclinic.javasbws01.entities.Order;
+import pt.bitclinic.javasbws01.repositories.OrderRepository;
+import pt.bitclinic.javasbws01.services.exceptions.ResourceNotFoundException;
+
+@Service
+public class OrderService {
+
+	@Autowired
+	private OrderRepository orderRepository;
+
+	@Transactional(readOnly = true)	
+	public List<Order> findAll() {
+		return orderRepository.findAll();
+	}
+
+	@Transactional(readOnly = true)	
+	public Order findById(Long id) {
+
+		Optional<Order> optionalOrder = orderRepository.findById(id);
+				
+		if (optionalOrder.isPresent()) {
+			Order Order = optionalOrder.get();
+			return Order;
+		} else {
+			throw new ResourceNotFoundException("Order with Id [" + id + "] not found.");
+		}
+	}
+	
+	//TODO OrderService: insert, delete and update methods
+	
+}

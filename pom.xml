@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pt.bitclinic</groupId>
-	<artifactId>Javasbws01</artifactId>
+	<artifactId>javasbws01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Javasbws01</name>
+	<name>javasbws01</name>
 	<description>Web services com Spring Boot e JPA / Hibernate</description>
 	<properties>
 		<java.version>17</java.version>
