@@ -36,9 +36,7 @@ public class PaymentService {
 		}
 	}
 	
-	public void add(Payment obj) {
-		paymentRepository.save(obj);
-	}
+	//TODO PaymentService: insert, delete and update methods
 	
 
 }

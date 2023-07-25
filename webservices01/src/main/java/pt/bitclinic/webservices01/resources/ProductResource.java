@@ -21,16 +21,15 @@ public class ProductResource {
 
 	@GetMapping
 	public ResponseEntity<List<Product>> findAll() {
-		
 		List<Product> ProductList = productService.findAll();
-
 		return ResponseEntity.ok().body(ProductList);
-
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Product> findById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(productService.findById(id));
 	}
+	
+	//TODO ProductResource: @PostMapping insert, @DeleteMapping delete, @PutMapping update
 
 }

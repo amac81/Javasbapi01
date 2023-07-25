@@ -35,9 +35,6 @@ public class CategoryService {
 		}
 	}
 	
-	public void add(Category obj) {
-		categoryRepository.save(obj);
-	}
-	
+	//TODO CategoryService: insert, delete and update methods
 
 }

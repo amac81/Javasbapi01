@@ -30,4 +30,5 @@ public class PaymentResource {
 		return ResponseEntity.ok().body(paymentService.findById(id));
 	}
 
+	//TODO PaymentResource: @PostMapping insert, @DeleteMapping delete, @PutMapping update
 }

@@ -29,5 +29,6 @@ public class OrderResource {
 	public ResponseEntity<Order> findById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(orderService.findById(id));
 	}
-	
+
+	//TODO OrderResource: @PostMapping insert, @DeleteMapping delete, @PutMapping update
 }

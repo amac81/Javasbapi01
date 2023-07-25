@@ -35,9 +35,6 @@ public class ProductService {
 		}
 	}
 	
-	public void add(Product obj) {
-		productRepository.save(obj);
-	}
-	
+	//TODO ProductService: insert, delete and update methods
 
 }
