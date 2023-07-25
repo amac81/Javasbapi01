@@ -46,7 +46,6 @@ public class TestConfig implements CommandLineRunner { // to run when program st
 	public void run(String... args) throws Exception {
 
 		// tables seed with dummy data
-
 		User user1 = new User(null, "David Wilson", "david.wilson@examplemail.com", "77777777", "864209");
 		User user2 = new User(null, "Olivia Garcia", "olivia.garcia@testmail.com", "22222222", "753951");
 		User user3 = new User(null, "James Martinez", "james.martinez@mail.com", "66666666", "987654");
