@@ -35,8 +35,8 @@ public class CategoryService {
 		}
 	}
 	
-	public void add(Category Category) {
-		categoryRepository.save(Category);
+	public void add(Category obj) {
+		categoryRepository.save(obj);
 	}
 	
 

@@ -36,8 +36,8 @@ public class PaymentService {
 		}
 	}
 	
-	public void add(Payment payment) {
-		paymentRepository.save(payment);
+	public void add(Payment obj) {
+		paymentRepository.save(obj);
 	}
 	
 

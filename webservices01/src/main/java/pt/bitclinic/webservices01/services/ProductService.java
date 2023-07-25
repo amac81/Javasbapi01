@@ -35,8 +35,8 @@ public class ProductService {
 		}
 	}
 	
-	public void add(Product Product) {
-		productRepository.save(Product);
+	public void add(Product obj) {
+		productRepository.save(obj);
 	}
 	
 
