@@ -21,7 +21,7 @@ public class Payment implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long paymentId;
 	private Instant moment;
 	
 	@JsonIgnore
@@ -32,18 +32,18 @@ public class Payment implements Serializable {
 	public Payment() {
 	}
 
-	public Payment(Long id, Instant moment, Order order) {
-		this.id = id;
+	public Payment(Long paymentId, Instant moment, Order order) {
+		this.paymentId = paymentId;
 		this.moment = moment;
 		this.order = order;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getPaymentId() {
+		return paymentId;	
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public Instant getMoment() {
@@ -53,10 +53,10 @@ public class Payment implements Serializable {
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(paymentId);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class Payment implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Payment other = (Payment) obj;
-		return id == other.id;
+		return paymentId == other.paymentId;
 	}
 
 }

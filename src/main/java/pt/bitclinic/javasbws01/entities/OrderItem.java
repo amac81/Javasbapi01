@@ -94,9 +94,4 @@ public class OrderItem {
 		OrderItem other = (OrderItem) obj;
 		return Objects.equals(id, other.id);
 	}
-
-
-	//TODO OrderItemService: findAll, findById, insert, delete and update methods
-	//TODO OrderItemResource: @GetMapping findAll, @GetMapping findById, @PostMapping insert, @DeleteMapping delete, @PutMapping update
-
 }
