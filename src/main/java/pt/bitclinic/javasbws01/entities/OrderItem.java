@@ -96,5 +96,7 @@ public class OrderItem {
 	}
 
 
+	//TODO OrderItemService: findAll, findById, insert, delete and update methods
+	//TODO OrderItemResource: @GetMapping findAll, @GetMapping findById, @PostMapping insert, @DeleteMapping delete, @PutMapping update
 
 }

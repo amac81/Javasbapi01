@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Webservices01Application {
+public class Javasbws01Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Webservices01Application.class, args);
+		SpringApplication.run(Javasbws01Application.class, args);
 	}
 
 }

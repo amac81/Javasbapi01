@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import pt.bitclinic.javasbws01.entities.Category;
-import pt.bitclinic.javasbws01.entities.Product;
 import pt.bitclinic.javasbws01.services.CategoryService;
 
 @RestController
