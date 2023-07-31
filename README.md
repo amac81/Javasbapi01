@@ -60,7 +60,40 @@ Prerequisites:
 
 Examples:
 
+# GET users
 
+http://localhost:8080/users
+
+# GET user by Id
+
+http://localhost:8080/users/2
+
+# POST user
+
+http://localhost:8080/users
+
+body
+{
+    "name": "Maria Betania",
+    "email": "maryb@mail.com",
+    "phone": "222322332",
+    "password": "xx323243"
+}
+
+# DELETE user (by Id)
+
+http://localhost:8080/users/2
+
+# PUT user (update user by Id)
+
+http://localhost:8080/users
+
+body:
+{
+    "name": "Ava Apple",
+    "email": "avaaple@mail.com",
+    "phone": "12234223"
+}
 ```
 
 ### Endpoint for orders
@@ -69,15 +102,44 @@ Examples:
 
 Examples:
 
+# GET orders
 
-```
+http://localhost:8080/orders
 
-### Endpoint for order items
+# GET order by Id
 
-```bash
+http://localhost:8080/orders/3
 
-Examples:
+# POST order
 
+http://localhost:8080/orders
+
+body
+{
+    "moment": "2023-07-26T12:09:22Z",
+    "orderStatus": "WAITING_PAYMENT",
+    "user": {
+            "id": 1           
+     }
+}
+
+# DELETE order (by Id)
+
+http://localhost:8080/orders/4
+
+
+# PUT order (update order by Id)
+
+http://localhost:8080/orders
+
+body
+{
+    "moment": "2023-07-26T12:09:22Z",
+    "orderStatus": "CANCELED",
+    "user": {
+            "id": 2           
+     }
+}
 
 ```
 
@@ -87,6 +149,41 @@ Examples:
 
 Examples:
 
+# GET products
+
+http://localhost:8080/products
+
+# GET product by Id
+
+http://localhost:8080/products/3
+
+# POST product
+
+http://localhost:8080/products
+
+body
+{
+    "name": "Bicicleta SCOTT CONTESSA SPEEDSTER 25 DISC",
+    "description": "A SCOTT Contessa Speedster 25 é uma leve, ágil e acessível bicicleta de estrada em alumínio. Com cabos totalmente integrados, esta bicicleta não só anda bem, como tem uma aparência espetacular!",
+    "price": "37.22",
+    "imgUrl": "http://wwww.bitclinic.pt/products/img8.jpg"
+}
+
+# DELETE product (by Id)
+
+http://localhost:8080/products/1
+
+# PUT product (update product by Id)
+
+http://localhost:8080/products
+
+body
+{
+    "name": "Bicicleta de Estrada SCOTT",
+    "description": "A SCOTT Contessa Speedster 25 é uma leve, ágil e acessível bicicleta de estrada em alumínio. Com cabos totalmente integrados, esta bicicleta não só anda bem, como tem uma aparência espetacular!",
+    "price": "3437.22",
+    "imgUrl": "http://wwww.bitclinic.pt/products/img8.jpg"
+}
 
 ```
 
@@ -96,6 +193,34 @@ Examples:
 
 Examples:
 
+# GET categories
+
+http://localhost:8080/categories
+
+# GET category by Id
+
+http://localhost:8080/categories/3
+
+# POST category
+
+http://localhost:8080/categories
+
+body
+{
+    "name": "Health and Beauty"
+}
+
+# DELETE category (by Id)
+http://localhost:8080/categories/2
+
+# PUT category (update category by Id)
+
+http://localhost:8080/categories
+
+body
+{
+    "name": "Toys and Games"
+}
 
 ```
 
