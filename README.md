@@ -1,10 +1,10 @@
-# Web services with Spring Boot and JPA / Hibernate - running on railway
+# API REST with Spring Boot and JPA / Hibernate - running on railway
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/amac81/Javasbws01/blob/main/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/amac81/Javasbapi01/blob/main/LICENSE) 
 
 # About the project
 
-javasbws01 it's a Project developed in the Complete Java 2023 course - Object Oriented Programming + Projects.
+Javasbapi01 it's a Project developed in the Complete Java 2023 course - Object Oriented Programming + Projects.
 
 ##  Its objectives:
 
@@ -17,7 +17,7 @@ javasbws01 it's a Project developed in the Complete Java 2023 course - Object Or
 - Handling exceptions;
 
 ## Conceptual model
-![Modelo Conceitual](https://github.com/amac81/Javasbws01/blob/main/assets/raw/conceptual_model.png)
+![Modelo Conceitual](https://github.com/amac81/Javasbapi01/blob/main/assets/raw/conceptual_model.png)
 
 # Technologies used
 ## Back end
@@ -41,7 +41,7 @@ Prerequisites:
 
 ```bash
 # clone repository
-git clone https://github.com/amac81/Javasbws01.git
+git clone https://github.com/amac81/Javasbapi01.git
 
 # run the project
 ./mvnw spring-boot:run (Linux, OSX, Solaris)
